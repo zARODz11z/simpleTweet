@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 //after we create the viewholder we can extend the RecyclerView.Adapter but parameterize it with the ViewHolder we just created
@@ -41,6 +43,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         //get the data at position
         Tweet tweet = tweets.get(position);
         //bind the tweet with view holder
+        holder.tvTimeStamp.setText(tweet.getFormattedTimestamp());
+
         holder.bind(tweet);
     }
 
@@ -69,18 +73,21 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         //the itemview passed in is 1 row of the recycler view (1 tweet)
         ImageView ivProfileImage;
         TextView tvBody;
+        TextView tvTimeStamp;
         TextView tvScreenName;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             tvBody = itemView.findViewById(R.id.tvBody);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
+            tvTimeStamp = itemView.findViewById(R.id.tvTimeStamp);
 
         }
 
         public void bind(Tweet tweet) {
             tvBody.setText(tweet.body);
             tvScreenName.setText(tweet.user.screenName);
+            tvTimeStamp.setText(tweet.getFormattedTimestamp());
             Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage); //loads the profile image into the ivProfileImage view using glide
 
         }

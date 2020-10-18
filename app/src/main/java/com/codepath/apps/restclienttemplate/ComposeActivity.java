@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
@@ -25,6 +26,7 @@ public class ComposeActivity extends AppCompatActivity {
 
     EditText etCompose;
     Button btnTweet;
+    ImageView composeProfilePicture;
 
     TwitterClient client;
 
@@ -36,6 +38,7 @@ public class ComposeActivity extends AppCompatActivity {
 
         etCompose = findViewById(R.id.etCompose);
         btnTweet = findViewById(R.id.btnTweet);
+        composeProfilePicture = findViewById(R.id.ivComposeTweetPicture);
 
         //set click listener on btnTweet
         btnTweet.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +67,8 @@ public class ComposeActivity extends AppCompatActivity {
                             intent.putExtra("tweet", Parcels.wrap(tweet));
                             //set result code and bundle data for response
                             setResult(RESULT_OK, intent);
-                            //closes the activitym pass data to parent
+
+                            //closes the activity pass data to parent
                             finish();
 
                         } catch (JSONException e) {

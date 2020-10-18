@@ -7,14 +7,20 @@ import com.codepath.apps.restclienttemplate.TimeFormatter;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Parcel
 public class Tweet {
     public String body;
     public String createdAt;
     public User user;
+
+    // empty constructor needed by the Parceler library
+    public Tweet() {}
+
 
     //this method takes in a JSONObject that we are getting from out API call, parses the JSON data to create a Tweet java model so that we can use in our UI
     public static Tweet fromJson(JSONObject jsonObject) throws JSONException {

@@ -2,12 +2,17 @@ package com.codepath.apps.restclienttemplate.models;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
+@Parcel
 public class User {
 
     public String name;
     public String screenName; //the users handle
     public String profileImageUrl;
+
+    // empty constructor needed by the Parceler library
+    public User() {}
 
     //fromJson takes in a jsonObject representing the json data of the user from the API call, We create the User data model and populate the fields by parsing the json data,
     //we throw a JSONException in the case that the json field does not exist
